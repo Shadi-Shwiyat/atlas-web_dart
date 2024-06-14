@@ -1,21 +1,14 @@
 String longestUniqueSubstring(String str) {
   String substring = '';
+  String currentSubstring = '';
 
   for (int i = 0; i < str.length; i++) {
-    if (substring.contains(str[i])) {
-      substring = '';
+    if (currentSubstring.contains(str[i])) {
+      currentSubstring = currentSubstring.substring(currentSubstring.indexOf(str[i]) + 1);
     }
-    substring += str[i];
-    for (int j = i + 1; j < str.length; j++) {
-      // bool containsCharacter = substring.contains('D');
-      if (str[i] == str[j]) {
-        substring = '';
-        break;
-      } else if (substring.contains(str[j]) || substring.contains(str[i])) {
-        break;
-      } else {
-        substring += str[j];
-      }
+    currentSubstring += str[i];
+    if (currentSubstring.length > substring.length) {
+      substring = currentSubstring;
     }
   }
 
