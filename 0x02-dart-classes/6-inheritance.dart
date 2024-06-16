@@ -12,7 +12,7 @@ class User extends Password{
   // Constructor
   User({this.id, this.name, this.age, this.height, this.user_password}) : super(password: user_password ?? '');
 
-    // Methods
+  // Methods
   String showName() {
     return 'Hello ${name}';
   }
@@ -37,10 +37,13 @@ class User extends Password{
   }
 
   String toString() {
-    return 'User(id : ${id} ,name: ${name}, age: ${age}, height: ${height}, Password: ${isValid(user_password)})';
+    return 'User(id : ${id} ,name: ${name}, age: ${age}, height: ${height}, Password: ${isValid()})';
   }
 
   // Setters
   @override
-  set setPassword(user_password) => this.user_password = user_password;
+  set setPassword(user_password) {
+    this.user_password = user_password;
+    super.setPassword = user_password;
+  }
 }
