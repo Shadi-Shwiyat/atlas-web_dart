@@ -17,6 +17,19 @@ class User extends Password{
     return 'Hello ${name}';
   }
 
+  @override
+  bool isValid() {
+    if (user_password ==  null) {
+      return false;
+    } else if (user_password!.length < 8 || user_password!.length > 16) {
+      return false;
+    } else if (!user_password!.contains(RegExp(r'[A-Z]')) || !user_password!.contains(RegExp(r'[a-z]')) || !user_password!.contains(RegExp(r'[0-9]'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -37,13 +50,18 @@ class User extends Password{
   }
 
   String toString() {
-    return 'User(id : ${id} ,name: ${name}, age: ${age}, height: ${height}, Password: ${isValid()})';
+    return 'User(id : ${id} ,name: ${name}, age: ${age}, height: ${height}, Password: ${this.isValid()})';
   }
 
   // Setters
   @override
   set setPassword(user_password) {
+    super.password = user_password;
     this.user_password = user_password;
-    super.setPassword = user_password;
+  }
+
+  set userPassword(user_password) {
+    this.user_password = user_password;
+    super.password = user_password;
   }
 }
