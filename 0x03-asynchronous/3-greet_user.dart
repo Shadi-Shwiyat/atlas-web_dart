@@ -19,7 +19,7 @@ Future<String> loginUser() async {
       print('There is a user: true');
       return await greetUser();
     } else {
-      print('There is a user: true');
+      print('There is a user: false');
       return 'Wrong Credentials';
     }
   } catch (error) {
