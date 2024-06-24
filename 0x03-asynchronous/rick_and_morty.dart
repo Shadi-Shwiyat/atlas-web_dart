@@ -7,7 +7,12 @@ Future<String> printRmCharacters() async {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      print(data);
+      // print(data);
+      List<dynamic> results = data['results'];
+
+      for (var character in results) {
+        print(character['name']);
+      }
     } else {
       throw Exception('Error fetching RM data');
     }
@@ -16,8 +21,4 @@ Future<String> printRmCharacters() async {
   } catch (error) {
     return 'error caught: ${error}';
   }
-}
-
-main() async {
-  await printRmCharacters();
 }
